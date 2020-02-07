@@ -1,0 +1,38 @@
+斐波那契数列
+
+递归实现：主要注意的是结束条件的设置，避免出现死循环
+function fib(n) {
+  if(n === 1 || n === 2) return 1
+  return fib(n-1) + fib(n-2)
+}
+
+非递归实现
+function fn(n) {
+  let last1 = 1, last2 = 1, temp
+  for(let i = 3; i <= n; i++) {
+    temp = last1 + last2
+    last1 = last2
+    last2 = temp
+  }
+  return last2
+}
+
+用空间换效率：空间是指数组
+function fib(n) {
+  let arr = [0, 1, 1]
+  for(let i=3; i<=n; i++) {
+    arr[i] = arr[i-1] + arr[i-2]
+  }
+  return arr[n]
+}
+
+使用缓存提升效率 使用了闭包来缓存数据
+function fib(n) {
+  let cache = [0, 1, 1]
+  function _fib(n) {
+    if(cache[n]) return cache[n]
+    cache[n] = _fib(n-1) + _fib(n-2)
+    return cache[n]
+  }
+  return _fib(n)
+}

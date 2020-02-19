@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .layout {
+            margin: 0 auto;
+            max-width: 800px;
+        }
+
+        .container {
+            display: grid;
+            font-size: 20px;
+            padding: 20px;
+            height: 600px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-shadow: 0 0 4px 0 rgba(0, 0, 0, .3);
+            grid: auto / 300px 300px;
+        }
+
+        .box {
+            border: 1px solid #999;
+            border-radius: 4px;
+        }
+
+        .box .header {
+            padding: 8px;
+            border-bottom: 1px solid #999;
+        }
+
+        .box .content {
+            padding: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="layout">
+        <h2>原型链</h2>
+        <h3>如下代码，reverse()和toString是哪里来的？</h3>
+        <p>let arr = [1, 3, 2, 0]</p>
+        <p>arr.reverse()</p>
+        <p>arr.toString()</p>
+        <p>arr.__proto__ === Array.prototype</p>
+        <div class="container">
+            <div class="box func">
+                <div class="header">function Array</div>
+                <div class="content">
+                    Array.prototype
+                </div>
+            </div>
+            <div class="box obj">
+                <div class="header">Array.prototype</div>
+                <div class="content">
+                    <p>constructor()</p>
+                    <p>reverse()</p>
+                    <p>toString()</p>
+                </div>
+            </div>
+            <div class="box proto">
+                <div class="header">arr = [1, 3, 2, 0]</div>
+                <div class="content">
+                    __proto__
+                </div>
+            </div>
+        </div>
+        <p>Array的原型对象Array.prototype,也有一个对象Array.prototype.__proto__</p>
+        <p>arr调用的任何属性和方法，如果arr本身没有，都可以在Array.prototype或者
+            Array.prototype.__proto__这条链上找到，直到找到原型链上为null的对象</p>
+    </div>
+</body>
+
+</html>
